@@ -1,39 +1,46 @@
-# Two-git-profiles-setup
-Managing multiple Git profiles on a single device can be challenging, especially when you switch between work and personal projects. In this guide, I’ll show you how to set up and manage two different Git profiles by configuring global and local Git settings.
+## Managing Multiple Git Profiles
 
-Step 1: Check Your Current Git User Configurations
+Follow these steps to set up and manage multiple Git profiles on your machine.
 
-Before setting up multiple profiles, check your current user configuration to know what’s already in place.
+### Step 1: Check Your Current Git User Configurations
 
---> git config --get user.name 
---> git config --get user.email
-
-If you’re using Git on your machine for the first time, these may return nothing. If you have a global user profile, it will display the configured username and email.
-
-Step 2: Set a Global Git Profile for work project
-
-Typically, you’ll use your global Git profile for most of your projects, like personal or open-source contributions. However, when you’re working on a project that requires a different github account username and email (e.g., a work project or a client project), you can set a local profile for that specific repository.
-
-To set your global profile for general use, run the following commands:
-
---> git config --global user.name "your-username"
---> git config --global user.email "your-email"
-This sets up a default profile for any repositories you work on unless you override it with a different configuration
-
-Step 4: Handling Credentials with Different Profiles
-
-To ensure that the correct credentials are used when accessing remote repositories, you may want to set up different credentials for each profile. You can store credentials using Git’s credential helper.
-
-For HTTP/HTTPS URLs, run the following command to store the credentials path-specific:
-
---> git config --global credential.useHttpPath true
-
-This tells Git to store credentials specific to each repository’s remote URL, which is helpful when switching between different accounts (like GitHub work and GitHub personal).
-
-Step 5: Verify Your Setup using following commands
+Before setting up multiple profiles, check your current user configuration to see what’s already in place.
 
 git config --get user.name
 git config --get user.email
 
-Conclusion :
-With these steps, you can seamlessly manage multiple Git profiles on one device without getting your credentials mixed up. This setup helps when you need to use different usernames and emails for personal and work repositories, ensuring that commits are properly attributed. If you ever need to modify your settings, you can update the global and local configurations at any time using the commands above.
+If you’re using Git for the first time, these may return nothing. If you have a global user profile, it will display the configured username and email.
+
+Step 2: Set a Global Git Profile for General Use
+To set your global profile for most of your projects (personal or open-source contributions), run the following commands:
+
+git config --global user.name "your-username"
+git config --global user.email "your-email"
+
+This sets up a default profile for any repositories unless you override it with a different local configuration.
+
+Step 3: Set a Local Git Profile for a Specific Repository
+When working on a project that requires a different GitHub account (e.g., work or client projects), you can set a local profile for that repository:
+
+git config --local user.name "your-work-username"
+git config --local user.email "your-work-email"
+
+This configures Git to use the specified username and email for this particular repository.
+
+Step 4: Handling Credentials with Different Profiles
+To ensure the correct credentials are used for different repositories, you can store credentials using Git’s credential helper. For HTTP/HTTPS URLs, run the following command:
+
+git config --global credential.useHttpPath true
+
+This tells Git to store credentials specific to each repository’s remote URL, making it easier when switching between personal and work GitHub accounts.
+
+Step 5: Verify Your Setup
+
+You can verify the configuration for each repository using the following commands:
+
+git config --get user.name
+git config --get user.email
+
+Conclusion
+With these steps, you can seamlessly manage multiple Git profiles on one device without mixing up your credentials. This setup is particularly useful when you need to use different usernames and emails for personal and work repositories.
+You can update your global and local configurations at any time using the commands above.
